@@ -86,48 +86,45 @@
     </div><!-- End Page Title -->
 
 
-    <!-- Search and Filter Section -->
-<section id="search-filter" class="search-filter py-5 bg-light">
-  <div class="container">
-    <form class="row gy-3 align-items-center">
-      
-      <!-- Location Filter -->
-      <div class="col-md-4">
-        <label for="location" class="form-label">Location</label>
-        <input type="text" class="form-control" id="location" placeholder="Enter location">
+    <section id="search-filter" class="search-filter py-5 bg-light">
+      <div class="container">
+        <form id="filter-form" class="row gy-3 align-items-center">
+          <!-- Location Filter -->
+          <div class="col-md-4">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="location" placeholder="Enter location">
+          </div>
+    
+          <!-- Price Range Filter -->
+          <div class="col-md-4">
+            <label for="min-price" class="form-label">Price Range (in $)</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="min-price" placeholder="Min" required min="0">
+              <span class="input-group-text">-</span>
+              <input type="number" class="form-control" id="max-price" placeholder="Max" required min="0">
+            </div>
+          </div>
+    
+          <!-- Property Type Filter -->
+          <div class="col-md-4">
+            <label for="property-type" class="form-label">Property Type</label>
+            <select class="form-select" id="property-type">
+              <option selected disabled value="">Choose...</option>
+              <option value="apartment">Apartment</option>
+              <option value="house">House</option>
+              <option value="commercial">Commercial</option>
+              <option value="land">Land</option>
+            </select>
+          </div>
+    
+          <!-- Search Button -->
+          <div class="col-md-12 text-center">
+            <button type="button" class="btn btn-primary mt-3" id="search-button">Search Properties</button>
+          </div>
+        </form>
       </div>
-
-<!-- Price Range Filter -->
-<div class="col-md-4">
-  <label for="min-price" class="form-label">Price Range (in $)</label>
-  <div class="input-group">
-    <input type="number" class="form-control" id="min-price" placeholder="Min" required min="0" style="-moz-appearance: textfield; -webkit-appearance: none; appearance: none;">
-    <span class="input-group-text">-</span>
-    <input type="number" class="form-control" id="max-price" placeholder="Max" required min="0" style="-moz-appearance: textfield; -webkit-appearance: none; appearance: none;">
-  </div>
-</div>
-
-      <!-- Property Type Filter -->
-      <div class="col-md-4">
-        <label for="property-type" class="form-label">Property Type</label>
-        <select class="form-select" id="property-type" required>
-          <option selected disabled value="">Choose...</option>
-          <option value="apartment">Apartment</option>
-          <option value="house">House</option>
-          <option value="commercial">Commercial</option>
-          <option value="land">Land</option>
-        </select>
-      </div>
-
-      <!-- Search Button -->
-      <div class="col-md-12 text-center">
-        <button type="submit" class="btn btn-primary mt-3">Search Properties</button>
-      </div>
-      
-    </form>
-  </div>
-</section><!-- End Search and Filter Section -->
-
+    </section>
+    
 
     <!-- Real Estate Section -->
     <section id="real-estate" class="real-estate section">
@@ -138,10 +135,10 @@
 
           <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="card">
-              <img src="assets/img/properties/property-1.jpg" alt="" class="img-fluid">
+              <img src="assets\img\properties\property 1\cb0b9ecdced1355402d92a3512a5d39f-cc_ft_1152 (1).webp" alt="" class="img-fluid">
               <div class="card-body">
-                <span class="sale-rent">Rent | $1200</span>
-                <h3><a href="property-single.html" class="stretched-link">204 Mount Olive Road Two</a></h3>
+                <span class="sale-rent">Buy | $10,000,000</span>
+                <h3><a href="property1.html" class="stretched-link">1120 Mulholland Dr, Los Angeles, CA</a></h3>
                 <div class="card-content d-flex flex-column justify-content-center text-center">
                   <div class="row propery-info">
                     <div class="col">Area</div>
@@ -152,8 +149,8 @@
                   <div class="row">
                     <div class="col">340m2</div>
                     <div class="col">5</div>
+                    <div class="col">6</div>
                     <div class="col">2</div>
-                    <div class="col">1</div>
                   </div>
                 </div>
               </div>
@@ -162,10 +159,10 @@
 
           <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="card">
-              <img src="assets/img/properties/property-2.jpg" alt="" class="img-fluid">
+              <img src="assets\img\properties\property 2\69cec65b7c46e5aef2bb89f8100f16b2-cc_ft_1152.webp" alt="" class="img-fluid">
               <div class="card-body">
-                <span class="sale-rent">Sale | $350.000</span>
-                <h3><a href="property-single.html" class="stretched-link">647 Molie Road</a></h3>
+                <span class="sale-rent">Sale | $3,200,000</span>
+                <h3><a href="property2.html" class="stretched-link"> 1350 N La Jolla Ave, Los Angeles, CA</a></h3>
                 <div class="card-content d-flex flex-column justify-content-center text-center">
                   <div class="row propery-info">
                     <div class="col">Area</div>
@@ -174,9 +171,9 @@
                     <div class="col">Garages</div>
                   </div>
                   <div class="row">
-                    <div class="col">340m2</div>
+                    <div class="col">3,800 sq ft</div>
+                    <div class="col">4</div>
                     <div class="col">5</div>
-                    <div class="col">2</div>
                     <div class="col">1</div>
                   </div>
                 </div>
@@ -186,10 +183,10 @@
 
           <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="card">
-              <img src="assets/img/properties/property-3.jpg" alt="" class="img-fluid">
+              <img src="assets\img\properties\property 3\ae944c554797c572e856f392cc1a20be-cc_ft_576.webp" alt="" class="img-fluid">
               <div class="card-body">
-                <span class="sale-rent">Sale | $580.000</span>
-                <h3><a href="property-single.html" class="stretched-link">711 Avenue Road</a></h3>
+                <span class="sale-rent">Sale | $200,500,000</span>
+                <h3><a href="property3.html" class="stretched-link">312 Venice Blvd, Los Angeles, CA</a></h3>
                 <div class="card-content d-flex flex-column justify-content-center text-center">
                   <div class="row propery-info">
                     <div class="col">Area</div>
@@ -198,10 +195,10 @@
                     <div class="col">Garages</div>
                   </div>
                   <div class="row">
-                    <div class="col">340m2</div>
-                    <div class="col">5</div>
-                    <div class="col">2</div>
-                    <div class="col">1</div>
+                    <div class="col">15,000 sq ft</div>
+                    <div class="col">15</div>
+                    <div class="col">10</div>
+                    <div class="col">3</div>
                   </div>
                 </div>
               </div>
@@ -210,10 +207,10 @@
 
           <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
             <div class="card">
-              <img src="assets/img/properties/property-4.jpg" alt="" class="img-fluid">
+              <img src="assets\img\properties\property 4\5b020e8d84f53fd5bd47b2ad2613afbd-cc_ft_576.webp" alt="" class="img-fluid">
               <div class="card-body">
-                <span class="sale-rent">Rent | $6500</span>
-                <h3><a href="property-single.html" class="stretched-link">117 Milk Road</a></h3>
+                <span class="sale-rent">Sale | $4,500,000</span>
+                <h3><a href="property4.html" class="stretched-link">5000 White Oak Ave, Los Angeles, CA</a></h3>
                 <div class="card-content d-flex flex-column justify-content-center text-center">
                   <div class="row propery-info">
                     <div class="col">Area</div>
@@ -221,11 +218,11 @@
                     <div class="col">Baths</div>
                     <div class="col">Garages</div>
                   </div>
-                  <div class="row">
-                    <div class="col">340m2</div>
-                    <div class="col">5</div>
+                  <div class="row property-info"> <!-- Corrected class name -->
+                    <div class="col">5,200 sq ft</div>
+                    <div class="col">6</div>
+                    <div class="col">5.5</div>
                     <div class="col">2</div>
-                    <div class="col">1</div>
                   </div>
                 </div>
               </div>
@@ -234,10 +231,10 @@
 
           <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
             <div class="card">
-              <img src="assets/img/properties/property-5.jpg" alt="" class="img-fluid">
+              <img src="assets\img\properties\property 5\8a91aa4ccff0f9ec65f6b10e2f0892d9-cc_ft_1152.webp" alt="" class="img-fluid">
               <div class="card-body">
-                <span class="sale-rent">Rent | $3000</span>
-                <h3><a href="property-single.html" class="stretched-link">678 Broad Road</a></h3>
+                <span class="sale-rent">Rent | $3,000,000</span>
+                <h3><a href="property5.html" class="stretched-link">2250 Lake View Ave, Los Angeles, CA</a></h3>
                 <div class="card-content d-flex flex-column justify-content-center text-center">
                   <div class="row propery-info">
                     <div class="col">Area</div>
@@ -246,10 +243,10 @@
                     <div class="col">Garages</div>
                   </div>
                   <div class="row">
-                    <div class="col">340m2</div>
+                    <div class="col">4000 sq ft</div>
                     <div class="col">5</div>
+                    <div class="col">4</div>
                     <div class="col">2</div>
-                    <div class="col">1</div>
                   </div>
                 </div>
               </div>
@@ -258,10 +255,49 @@
 
           <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
             <div class="card">
-              <img src="assets/img/properties/property-6.jpg" alt="" class="img-fluid">
+              <img src="assets\img\properties\property 6\101a4017d2e4468a618c172d64bff2ca-cc_ft_1152.webp" alt="" class="img-fluid">
               <div class="card-body">
-                <span class="sale-rent">Sale | $650.000</span>
-                <h3><a href="property-single.html" class="stretched-link">974 Denim Road</a></h3>
+                <span class="sale-rent">Sale | $50,200,000</span>
+                <h3><a href="property6.html" class="stretched-link">800 Stone Canyon Rd, Los Angeles, CA</a></h3>
+                <div class="card-content d-flex flex-column justify-content-center text-center">
+                  <div class="row property-info"> <!-- Corrected class name -->
+                    <div class="col">Area</div>
+                    <div class="col">Beds</div>
+                    <div class="col">Baths</div>
+                    <div class="col">Garages</div>
+                  </div>
+                  <div class="row">
+                    <div class="col">12,000 sq ft</div>
+                    <div class="col">8</div>
+                    <div class="col">10</div>
+                    <div class="col">3/div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Property Item -->
+
+
+
+
+        </div>
+
+      </div>
+
+    </section><!-- /Real Estate Section -->
+
+    <section id="real-estate" class="real-estate section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="card">
+              <img src="assets\img\properties\property 7\578e8f69415fe87cc103f6eef7f07091-cc_ft_1152.webp" alt="" class="img-fluid">
+              <div class="card-body">
+                <span class="sale-rent">Sale | $7,200,000</span>
+                <h3><a href="property7.html" class="stretched-link">2400 Willow Glen Rd, Los Angeles, CA</a></h3>
                 <div class="card-content d-flex flex-column justify-content-center text-center">
                   <div class="row propery-info">
                     <div class="col">Area</div>
@@ -270,21 +306,94 @@
                     <div class="col">Garages</div>
                   </div>
                   <div class="row">
-                    <div class="col">340m2</div>
+                    <div class="col">5000 sq ft</div>
+                    <div class="col">5</div>
+                    <div class="col">3</div>
+                    <div class="col">2</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div><!-- End Property Item -->
+          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="card">
+              <img src="assets\img\properties\property 8\6b0a902af47e6228a1c7917fe621d1ed-cc_ft_1152.webp" alt="" class="img-fluid">
+              <div class="card-body">
+                <span class="sale-rent">Sale | $5,200,000</span>
+                <h3><a href="property8.html" class="stretched-link">1525 Sunset Blvd, Los Angeles, CA</a></h3>
+                <div class="card-content d-flex flex-column justify-content-center text-center">
+                  <div class="row propery-info">
+                    <div class="col">Area</div>
+                    <div class="col">Beds</div>
+                    <div class="col">Baths</div>
+                    <div class="col">Garages</div>
+                  </div>
+                  <div class="row">
+                    <div class="col">7000 sq ft</div>
+                    <div class="col">4</div>
                     <div class="col">5</div>
                     <div class="col">2</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Property Item -->
+        
+          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="card">
+              <img src="assets\img\properties\property 9\2dbfe3beb1b08a7f751e0987ba4e5a26-cc_ft_1152.webp" alt="" class="img-fluid">
+              <div class="card-body">
+                <span class="sale-rent">Sale | $1,200,000</span>
+                <h3><a href="property9.html" class="stretched-link"> 7850 Torreyson Dr, Los Angeles, CA</a></h3>
+                <div class="card-content d-flex flex-column justify-content-center text-center">
+                  <div class="row propery-info">
+                    <div class="col">Area</div>
+                    <div class="col">Beds</div>
+                    <div class="col">Baths</div>
+                    <div class="col">Garages</div>
+                  </div>
+                  <div class="row">
+                    <div class="col">3,800 sq ft</div>
+                    <div class="col">3</div>
+                    <div class="col">3</div>
                     <div class="col">1</div>
                   </div>
                 </div>
               </div>
             </div>
           </div><!-- End Property Item -->
+          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="card">
+              <img src="assets\img\properties\property 10\08c62c8fd44edb233b508ca7aa73da7b-cc_ft_1152.webp" alt="" class="img-fluid">
+              <div class="card-body">
+                <span class="sale-rent">Sale | $10,200,000</span>
+                <h3><a href="property10.html" class="stretched-link">1234 Maple St, Pasadena</a></h3>
+                <div class="card-content d-flex flex-column justify-content-center text-center">
+                  <div class="row propery-info">
+                    <div class="col">Area</div>
+                    <div class="col">Beds</div>
+                    <div class="col">Baths</div>
+                    <div class="col">Garages</div>
+                  </div>
+                  <div class="row">
+                    <div class="col">5,500 sq ft</div>
+                    <div class="col">5</div>
+                    <div class="col">5</div>
+                    <div class="col">2</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Property Item -->
+        
 
         </div>
 
       </div>
 
     </section><!-- /Real Estate Section -->
+
 
   </main>
 
@@ -341,10 +450,6 @@
     <div class="container copyright text-center mt-4">
       <p>© <span>Copyright</span> <strong class="px-1 sitename">RealHome</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
       
       </div>
     </div>
@@ -366,6 +471,35 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    document.getElementById('search-button').addEventListener('click', function() {
+      const location = document.getElementById('location').value.toLowerCase();
+      const minPrice = parseFloat(document.getElementById('min-price').value);
+      const maxPrice = parseFloat(document.getElementById('max-price').value);
+      const propertyType = document.getElementById('property-type').value.toLowerCase();
+  
+      const propertyCards = document.querySelectorAll('.card'); // Adjust selector based on your card structure
+      propertyCards.forEach(card => {
+        const priceText = card.querySelector('.sale-rent').textContent; // Get price text from sale-rent class
+        const price = parseFloat(priceText.replace(/[^0-9.-]+/g, "")); // Extract numerical value from price string
+        const propertyTypeCard = card.querySelector('h3 a').textContent.toLowerCase(); // Adjust to get property type
+        const saleRentStatus = card.querySelector('.sale-rent').textContent.toLowerCase(); // Get status text
+  
+        const matchesLocation = location === '' || card.querySelector('h3 a').textContent.toLowerCase().includes(location);
+        const matchesPrice = (isNaN(minPrice) || price >= minPrice) && (isNaN(maxPrice) || price <= maxPrice);
+        const matchesType = propertyType === '' || propertyTypeCard.includes(propertyType);
+        const matchesStatus = saleRentStatus.includes('for sale') || saleRentStatus.includes('for rent'); // Adjust based on your requirements
+  
+        if (matchesLocation && matchesPrice && matchesType && matchesStatus) {
+          card.parentElement.style.display = ''; // Show card
+        } else {
+          card.parentElement.style.display = 'none'; // Hide card
+        }
+      });
+    });
+  </script>
+    
 
 </body>
 

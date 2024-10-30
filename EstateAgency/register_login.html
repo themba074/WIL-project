@@ -125,22 +125,21 @@
                     <div class="form-container">
                 <h2 id="form-title">Login</h2>
                 <!-- Form for login and registration -->
-                <form id="user-form">
-                  <input type="text" id="username" placeholder="Username" required>
-                  <input type="password" id="password" placeholder="Password" required>
-            
-                  <!-- Only show for registration -->
-                  <div id="extra-fields" class="role-select">
-                    <input type="email" id="email" placeholder="Email" required>
-                    <select id="role">
-                      <option value="buyer_seller">Buyer/Seller</option>
-                      <option value="agent">Agent</option>
-                    </select>
+                <form id="user-form" action="auth.php" method="POST">
+                  <input type="text" id="username" name="username" placeholder="Username" required>
+                  <input type="password" id="password" name="password" placeholder="Password" required>
+              
+                  <div id="extra-fields" class="role-select" style="display: none;">
+                      <input type="email" id="email" name="email" placeholder="Email" required>
+                      <select id="role" name="role">
+                          <option value="buyer_seller">Buyer/Seller</option>
+                          <option value="agent">Agent</option>
+                      </select>
                   </div>
-            
-                  <button type="submit" id="submit-button">Login</button>
-                </form>
-                
+              
+                  <button type="submit" name="login" id="submit-button">Login</button>
+              </form>
+                              
                 <div class="form-toggle">
                   <p id="toggle-message">Don't have an account? <a id="toggle-link">Register</a></p>
                 </div>
@@ -199,11 +198,6 @@
     <div class="container copyright text-center mt-4">
       <p>© <span>Copyright</span> <strong class="px-1 sitename">RealHome</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-      
       </div>
     </div>
 

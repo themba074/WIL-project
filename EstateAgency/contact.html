@@ -102,15 +102,16 @@
               <i class="bi bi-geo-alt flex-shrink-0"></i>
               <div>
                 <h3>Address</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
-              </div>
+                <p>Rodeo Drive</p>
+                <p>Los Angeles, LA 535022</p>
+                  </div>
             </div><!-- End Info Item -->
 
             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
               <i class="bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Call Us</h3>
-                <p>+1 5589 55488 55</p>
+                <strong>Phone:</strong> <span>062 881 3627</span><br>
               </div>
             </div><!-- End Info Item -->
 
@@ -118,7 +119,7 @@
               <i class="bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email Us</h3>
-                <p>info@example.com</p>
+                <strong>Email:</strong> <span>realhomie1@gmail.com</span><br>
               </div>
             </div><!-- End Info Item -->
 
@@ -238,6 +239,39 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    document.querySelector('.php-email-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent default form submission
+    
+        // Create FormData object
+        var formData = new FormData(this);
+    
+        // Send AJAX request
+        fetch(this.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                document.querySelector('.sent-message').style.display = 'block';
+                document.querySelector('.error-message').style.display = 'none';
+                this.reset(); // Reset form after successful submission
+            } else {
+                document.querySelector('.error-message').innerText = data.message;
+                document.querySelector('.error-message').style.display = 'block';
+                document.querySelector('.sent-message').style.display = 'none';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.querySelector('.error-message').innerText = 'An error occurred. Please try again.';
+            document.querySelector('.error-message').style.display = 'block';
+        });
+    });
+    </script>
+    
 
 </body>
 
