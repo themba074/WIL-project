@@ -226,7 +226,7 @@
       isLogin = !isLogin;
     });
   
-    // Form submission handling (mockup, replace with actual login/register logic)
+    // Form submission handling
     document.getElementById('user-form').addEventListener('submit', function (event) {
       event.preventDefault();
   
@@ -240,16 +240,17 @@
   
         // Mock registration (replace with backend call)
         alert(`Registration successful as ${role}. Welcome to RealHome!`);
-        window.location.href = role === 'agent' ? 'agent_profile.html' : 'buyer_dashboard.html';
       } else {
         // Mock login (replace with backend login logic)
         const role = username.includes('agent') ? 'agent' : 'buyer_seller'; // Simulating role check
         alert(`Login successful as ${role}. Welcome back to RealHome!`);
-        window.location.href = role === 'agent' ? 'agent_profile.html' : 'buyer_dashboard.html';
       }
+  
+      // Redirect to the index page after registration or login
+      window.location.href = 'index.html';
     });
   </script>
-  
+    
   <a href="#" class="scroll-top"><i class="bi bi-arrow-up-short"></i></a>
 
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
