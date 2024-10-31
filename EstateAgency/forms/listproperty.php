@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "realhome_db"; // Database name
+$username = "root"; // Default username for XAMPP
+$password = ""; // Default password for XAMPP
+$dbname = "realhome_db"; // Your database name
 
 // Create a connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,31 +17,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $action = $_POST['action'];
 
     // Capture form data
-    $title = $_POST['title'];
-    $location = $_POST['location'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
-    $type = $_POST['type'];
+    $title = htmlspecialchars(trim($_POST['title']));
+    $location = htmlspecialchars(trim($_POST['location']));
+    $price = htmlspecialchars(trim($_POST['price']));
+    $description = htmlspecialchars(trim($_POST['description']));
+    $type = htmlspecialchars(trim($_POST['type']));
     $images = $_FILES['images']['name'];
 
     // Handle image upload if provided
     if (!empty($_FILES['images']['name'][0])) {
         $imagePath = "uploads/";
         $imageFiles = [];
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!is_dir($imagePath)) {
+            mkdir($imagePath, 0777, true); // Create the uploads directory if it doesn't exist
+        }
 
         foreach ($_FILES['images']['name'] as $key => $image) {
-            // Validate file type
-            if (!in_array($_FILES['images']['type'][$key], $allowedTypes)) {
-                die("Invalid file type: " . $_FILES['images']['type'][$key]);
-            }
-
             $target = $imagePath . basename($image);
             if (move_uploaded_file($_FILES['images']['tmp_name'][$key], $target)) {
                 $imageFiles[] = $target;
             }
         }
         $images = implode(",", $imageFiles);
+    } else {
+        $images = null; // No images uploaded
     }
 
     if ($action == 'add') {

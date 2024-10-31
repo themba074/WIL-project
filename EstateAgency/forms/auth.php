@@ -1,52 +1,38 @@
 <?php
-session_start();
+$servername = "localhost";
+$username = "root"; // Default username for XAMPP
+$password = ""; // Default password for XAMPP
+$dbname = "realhome_db"; // Your database name
 
-// Database connection
-$conn = new mysqli("localhost", "root", "", "realhome_db");
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check the database connection
+// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 // Handle form submission
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = htmlspecialchars(trim($_POST['username']));
+    $password = htmlspecialchars(trim($_POST['password']));
+    $role = isset($_POST['role']) ? htmlspecialchars(trim($_POST['role'])) : null;
+    $email = isset($_POST['email']) ? htmlspecialchars(trim($_POST['email'])) : null;
 
-    // Check if registration or login form
-    if (isset($_POST['register'])) {
-        // Registration logic
-        $email = $_POST['email'];
-        $role = $_POST['role'];
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-        // Prepare SQL statement to insert user data
-        $stmt = $conn->prepare("INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $username, $hashedPassword, $email, $role);
-
-        // Execute statement and check if successful
-        if ($stmt->execute()) {
-            $_SESSION['username'] = $username;
-            header("Location: index.html");
-            exit();
-        } else {
-            echo "Registration failed: " . $conn->error;
-        }
-        $stmt->close();
-
-    } elseif (isset($_POST['login'])) {
+    if (isset($_POST['login'])) {
         // Login logic
-        $stmt = $conn->prepare("SELECT id, password, role FROM users WHERE username = ?");
+        $sql = "SELECT * FROM users WHERE username = ?";
+        $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $username);
         $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result($id, $hashedPassword, $role);
+        $result = $stmt->get_result();
 
-        if ($stmt->num_rows > 0) {
-            $stmt->fetch();
-            if (password_verify($password, $hashedPassword)) {
-                $_SESSION['username'] = $username;
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            // Verify password (assuming passwords are hashed)
+            if (password_verify($password, $user['password'])) {
+                echo "Login successful! Welcome back, " . $user['username'];
+                // Redirect to the index page or dashboard
                 header("Location: index.html");
                 exit();
             } else {
@@ -55,8 +41,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             echo "No user found with that username.";
         }
-        $stmt->close();
+    } elseif (isset($_POST['register'])) {
+        // Registration logic
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssss", $username, $hashedPassword, $email, $role);
+
+        if ($stmt->execute()) {
+            echo "Registration successful! You can now log in.";
+            // Redirect to the login page or index page
+            header("Location: index.html");
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
     }
 }
+
+// Close connection
 $conn->close();
 ?>
