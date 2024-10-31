@@ -147,7 +147,7 @@
                     <div class="col">Garages</div>
                   </div>
                   <div class="row">
-                    <div class="col">340m2</div>
+                    <div class="col">12,000 sq ft</div>
                     <div class="col">5</div>
                     <div class="col">6</div>
                     <div class="col">2</div>
