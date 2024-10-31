@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "realhome_db"; // Change to your database name
+$dbname = "realhome_db"; // Database name
 
 // Create a connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,27 +14,34 @@ if ($conn->connect_error) {
 
 // Handle add, edit, or delete actions
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $action = $_POST['action']; // The action to perform (add, edit, delete)
+    $action = $_POST['action'];
 
+    // Capture form data
     $title = $_POST['title'];
     $location = $_POST['location'];
     $price = $_POST['price'];
     $description = $_POST['description'];
     $type = $_POST['type'];
-    $images = $_FILES['images']['name']; // Store image names
+    $images = $_FILES['images']['name'];
 
-    // Handle image upload if images were provided
+    // Handle image upload if provided
     if (!empty($_FILES['images']['name'][0])) {
         $imagePath = "uploads/";
         $imageFiles = [];
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
         foreach ($_FILES['images']['name'] as $key => $image) {
+            // Validate file type
+            if (!in_array($_FILES['images']['type'][$key], $allowedTypes)) {
+                die("Invalid file type: " . $_FILES['images']['type'][$key]);
+            }
+
             $target = $imagePath . basename($image);
             if (move_uploaded_file($_FILES['images']['tmp_name'][$key], $target)) {
                 $imageFiles[] = $target;
             }
         }
-        $images = implode(",", $imageFiles); // Save paths as comma-separated
+        $images = implode(",", $imageFiles);
     }
 
     if ($action == 'add') {
@@ -44,43 +51,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("ssdsss", $title, $location, $price, $description, $type, $images);
         $stmt->execute();
 
-        if ($stmt->affected_rows > 0) {
-            echo "Property added successfully!";
-        } else {
-            echo "Error adding property.";
-        }
+        echo $stmt->affected_rows > 0 ? "Property added successfully!" : "Error adding property.";
         $stmt->close();
     } elseif ($action == 'edit') {
-        // Edit existing property by ID
+        // Edit existing property
         $id = $_POST['id'];
         $sql = "UPDATE properties SET title = ?, location = ?, price = ?, description = ?, type = ?, images = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ssdsssi", $title, $location, $price, $description, $type, $images, $id);
         $stmt->execute();
 
-        if ($stmt->affected_rows > 0) {
-            echo "Property updated successfully!";
-        } else {
-            echo "Error updating property.";
-        }
+        echo $stmt->affected_rows > 0 ? "Property updated successfully!" : "Error updating property.";
         $stmt->close();
     } elseif ($action == 'delete') {
-        // Delete property by ID
+        // Delete property
         $id = $_POST['id'];
         $sql = "DELETE FROM properties WHERE id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
 
-        if ($stmt->affected_rows > 0) {
-            echo "Property deleted successfully!";
-        } else {
-            echo "Error deleting property.";
-        }
+        echo $stmt->affected_rows > 0 ? "Property deleted successfully!" : "Error deleting property.";
         $stmt->close();
     }
 }
 
-// Close the connection
+// Close connection
 $conn->close();
 ?>
